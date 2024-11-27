@@ -6,12 +6,12 @@
                 <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/c0b63289239975.5deed8161b1e5.jpg"
                     alt="Site Logo" class="h-12 w-12 mx-2 rounded-full" />
                 <span class="text-sm md:text-xl">
-                    &copy; {{ new Date().getFullYear() }} {{ $t('All rights reserved to Munira.') }}
+                    &copy; {{ new Date().getFullYear() }} {{ $t('All rights reserved to Shams.') }}
                 </span>
             </div>
-            <h1>
+            <h1 class="my-auto">
                 {{ $t('Mail Us') }} : <a href="mailto:support@example.com"
-                    class="underline text-green-300 hover:text-green-400 delayed">Munira@gmail.com</a>
+                    class="underline text-green-300 hover:text-green-400 delayed">Shams@gmail.com</a>
             </h1>
             <!-- الروابط -->
             <nav class="flex space-x-6 md:text-xl">
@@ -22,9 +22,9 @@
                 <nuxt-link to="/about" class="hover:underline hover:text-green-300 delayed">
                     {{ $t('About Us') }}
                 </nuxt-link>
-                <nuxt-link to="/products" class="hover:underline hover:text-green-300 delayed">
+                <!-- <nuxt-link to="/products" class="hover:underline hover:text-green-300 delayed">
                     {{ $t('Products') }}
-                </nuxt-link>
+                </nuxt-link> -->
 
             </nav>
         </div>

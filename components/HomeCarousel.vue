@@ -4,45 +4,21 @@
       <v-carousel-item>
         <div class="relative">
           <img class="sm:w-100 md:w-[70%] px-4 rounded-xl relative cursor-pointer md:h-[400px] mx-auto"
-            src="/public/imgs/pic.png" alt="Image" @click="navigateTo('/article')" />
+            src="https://www.economy-today.com/economy/uploads/2021/09/%D8%A8%D8%B1%D8%AC-%D8%A7%D9%84%D9%85%D9%85%D9%84%D9%83%D8%A9-750x430.jpg" alt="Image" @click="navigateTo('/article')" />
 
         </div>
       </v-carousel-item>
+     
       <v-carousel-item>
         <div class="relative">
-          <img v-if="$i18n.locale === 'ar-AR'"
-            class="sm:w-100 md:w-[70%] px-4 rounded-xl relative cursor-pointer md:h-[400px] mx-auto"
-            src="/public/imgs/ar.png" alt="Image" />
-          <img v-else class="sm:w-100 md:w-[70%] px-4 rounded-xl relative cursor-pointer md:h-[400px] mx-auto"
-            src="/public/imgs/en.png" alt="Image" />
+          <img class="sm:w-100 md:w-[70%] px-4 rounded-xl relative cursor-pointer md:h-[400px] mx-auto"
+            src="https://argaamplus.s3.amazonaws.com/961f0e5d-670c-4b01-8f2a-a5c0134fca43.png" alt="Image" @click="navigateTo('/article')" />
 
         </div>
       </v-carousel-item>
+     
 
-      <v-carousel-item v-for="(product, index) in products" :key="index">
-        <div class="relative">
-          <img class="sm:w-100 px-4 rounded-xl md:h-[400px] mx-auto md:w-[70%] "
-            :src="product.imageUrl || '/public/imgs/pic.png'" alt="Product Image" />
-          <h1
-            class="absolute  bg-grey-darken-2 hover:bg-grey-darken-2 delayed text-white text-sm rounded-full px-1 bottom-0  md:hidden cursor-pointer"
-            :class="{ 'left-12 ': $i18n.locale === 'ar-AR', 'right-12 ': $i18n.locale === 'en-US' }"
-            @click="navigateTo(`/product/${product.id}`)">
-            {{ $t('More') }}
-          </h1>
-          <h1
-            class="absolute  bg-grey-darken-2 hover:bg-grey-darken-2 delayed text-sm text-white rounded-full px-4 py-1 bottom-2 hidden md:block lg:hidden cursor-pointer"
-            :class="{ 'left-64 ': $i18n.locale === 'ar-AR', 'right-64 ': $i18n.locale === 'en-US' }"
-            @click="navigateTo(`/product/${product.id}`)">
-            {{ $t('More') }}
-          </h1>
-          <h1
-            class="absolute  bg-grey-darken-2 hover:bg-grey-darken-2 delayed text-sm text-white rounded-full px-4 py-1 bottom-2 hidden lg:block cursor-pointer"
-            :class="{ 'left-80 ': $i18n.locale === 'ar-AR', 'right-80 ': $i18n.locale === 'en-US' }"
-            @click="navigateTo(`/product/${product.id}`)">
-            {{ $t('More') }}
-          </h1>
-        </div>
-      </v-carousel-item>
+    
 
     </v-carousel>
   </div>
@@ -102,7 +78,7 @@ onUnmounted(() => {
 
 <style>
 .v-btn--icon.v-btn--density-default {
-  background-color: rgb(85, 12, 153) !important;
+  background-color: rgb(3, 102, 56) !important;
   height: 12px !important;
   width: 12px !important;
 }

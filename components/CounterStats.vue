@@ -40,7 +40,7 @@ onMounted(() => {
     <div class="stat-item">
       <div class="stat-content">
         <div class="text-xl font-bold">{{ visitorsCount }}</div>
-        <div class="text-xl font-bold">{{ $t('Visits') }}</div>
+        <div class="text-xl font-bold">{{ $t('Projects') }}</div>
       </div>
     </div>
 
@@ -58,8 +58,8 @@ onMounted(() => {
 /* تصميم الدوائر */
 .stat-item {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 130px;
+  height: 130px;
   background-image: url('/public/imgs/test.png'); /* ضع مسار الصورة هنا */
   background-size: cover;
   background-position: center;

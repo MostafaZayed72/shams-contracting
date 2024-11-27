@@ -1,8 +1,7 @@
 <template>
-  <div :class="{ 'dark': isDarkMode }" :style="{ direction: locale === 'ar-AR' ? 'rtl' : 'ltr' }">
-    <!-- <img src="/public/22.png" class="fixed top-10  left-[-20px] z-[-1] md:w-[30%]" alt="">
-    <img src="/public/11.png" class="fixed bottom-0  left-[-20px] z-[-1] md:w-[30%]" alt="">
-    <img src="/public/33.png" class="fixed bottom-0  right-[-20px] z-[-1] w-[50%] md:w-[30%]" alt=""> -->
+  <div :class="{ 'dark': isDarkMode }"
+    :style="{ direction: locale === 'ar-AR' ? 'rtl' : 'ltr', backgroundImage: backgroundImage }">
+
     <div class="mb-0 px-4  flex justify-between items-center py-2 shadow-xl sticky top-0 z-10 "
       style="background-color: #0eba82;">
       <div class="flex items-center gap-4">
@@ -19,17 +18,11 @@
           to="/" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
           {{ $t('Home') }}
         </NuxtLink>
-        <NuxtLink v-if="!token"
-          class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-          to="/login" active-class="bg-grey-darken-2 text-yellow-400"
-          exact-active-class="bg-grey-darken-2 text-yellow-400">
-          {{ $t('Login') }}
-        </NuxtLink>
+
         <NuxtLink v-if="token"
           class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-          to="/my-profile" active-class="bg-grey-darken-2 text-yellow-400"
-          exact-active-class="bg-grey-darken-2 text-yellow-400">
-          {{ $t('My profile') }}
+          to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
+          {{ $t('Maintenance') }}
         </NuxtLink>
         <!-- <NuxtLink
           class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
@@ -39,23 +32,19 @@
         <NuxtLink
           class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
           to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
-          {{ $t('Notifications') }}
+          {{ $t('Environment') }}
         </NuxtLink>
         <NuxtLink :class="['hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400',
         ]" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400" to="">
-          {{ $t('Products') }}
+          {{ $t('Safety') }}
         </NuxtLink>
         <NuxtLink
           class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
           to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
-          {{ $t('My commissions') }}
+          {{ $t('Orders') }}
         </NuxtLink>
 
-        <NuxtLink
-          class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-          to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
-          {{ $t('Article') }}
-        </NuxtLink>
+
 
 
 
@@ -63,11 +52,10 @@
       </div>
       <div class="flex items-center ">
 
-        <Icon class="text-3xl cursor-pointer text-white hidden md:flex" name="ic:twotone-log-out" v-if="token"
-          @click="logout" />
+
         <LanguageSwitcher />
 
-        <DarkModeToggle />
+        <DarkModeToggle @click="toggleDarkMode" />
         <FloatingActions />
       </div>
     </div>
@@ -78,9 +66,11 @@
         style="background-color: #0eba82;">
         <div class="flex flex-col p-4">
           <NuxtLink
-            class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
+            class="flex items-center gap-2 hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
             to="/" active-class="bg-grey-darken-2 text-yellow-400"
             exact-active-class="bg-grey-darken-2 text-yellow-400">
+            <Icon name="material-symbols:family-home" />
+
             {{ $t('Home') }}
           </NuxtLink>
 
@@ -91,42 +81,38 @@
           {{ $t('My profile') }}
         </NuxtLink> -->
           <NuxtLink
-            class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
+            class="flex items-center gap-2 hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
             to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
-
-            {{ $t('Notifications') }} </NuxtLink>
-          <NuxtLink :class="['hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400',
+            <Icon name="pajamas:issue-type-maintenance" />
+            {{ $t('Maintenance') }}
+          </NuxtLink>
+          <NuxtLink class="flex items-center gap-2" :class="['hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400',
             { 'bg-grey-darken-2 text-yellow-400': isYourNurseActive }]" to="">
-            {{ $t('Products') }}
+            <Icon
+              name="streamline:nature-ecology-pine-tree-plant-tree-farming-christmas-nature-plants-pine-environment" />
+
+            {{ $t('Environment') }}
           </NuxtLink>
           <NuxtLink
-            class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
+            class="flex items-center gap-2 hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
             to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
-            {{ $t('My commissions') }}
+            <Icon name="fluent-emoji-flat:safety-vest" />
+
+            {{ $t('Safety') }}
 
           </NuxtLink>
           <NuxtLink
-            class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
+            class="flex items-center gap-2 hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
             to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
-            {{ $t('Article') }}
+            
+            <Icon name="material-symbols:garden-cart" />
+
+            {{ $t('Orders') }}
 
           </NuxtLink>
-          <NuxtLink v-if="!token"
-            class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-            to="/login" active-class="bg-grey-darken-2 text-yellow-400"
-            exact-active-class="bg-grey-darken-2 text-yellow-400">
-            {{ $t('Login') }}
-          </NuxtLink>
-          <NuxtLink v-if="token"
-            class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-            to="/my-profile" active-class="bg-grey-darken-2 text-yellow-400"
-            exact-active-class="bg-grey-darken-2 text-yellow-400">
-            {{ $t('My profile') }}
-          </NuxtLink>
-          <h1 v-if="token" @click="logout"
-            class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400">
-            {{ $t('Logout') }}
-          </h1>
+
+
+
 
 
         </div>
@@ -150,7 +136,32 @@ const { locale } = useI18n();
 const loading = ref(true);
 const router = useRouter();
 
-// استخدام useLocalStorage بدلاً من localStorage مباشرة
+
+const isDarkMode = ref(false);
+
+// استرجاع وضعية اللون المحفوظة
+onMounted(() => {
+  const savedColorMode = localStorage.getItem('colorMode');
+  if (savedColorMode === 'dark' || savedColorMode === 'light') {
+    isDarkMode.value = savedColorMode === 'dark';
+    document.body.classList.toggle('dark', isDarkMode.value);
+  }
+});
+
+// تحديد صورة الخلفية بناءً على وضعية الوضع الداكن
+const backgroundImage = computed(() => {
+  return isDarkMode.value
+    ? 'url(/imgs/dark.jpg)'  // صورة الخلفية في الوضع الداكن
+    : 'url(/imgs/light.jpg)'; // صورة الخلفية في الوضع العادي
+});
+
+// دالة لتبديل الوضع الداكن
+const toggleDarkMode = () => {
+  isDarkMode.value = !isDarkMode.value;
+  localStorage.setItem('colorMode', isDarkMode.value ? 'dark' : 'light');
+  document.body.classList.toggle('dark', isDarkMode.value);
+};
+
 const token = useLocalStorage('token', null); // "token" هو اسم المفتاح و "null" هو القيمة الافتراضية
 const userID = ref()
 const roles = ref()
@@ -162,13 +173,6 @@ const checkToken = () => {
   }
 };
 
-// تسجيل الخروج
-const logout = () => {
-  localStorage.removeItem('userID');
-  localStorage.removeItem('token');
-  localStorage.removeItem('roles');
-  navigateTo('/login'); // استخدم router.push بدلاً من navigateTo
-};
 
 // مراقبة التوكن وتحديث حالة token بناءً عليه
 watch(token, (newToken) => {
