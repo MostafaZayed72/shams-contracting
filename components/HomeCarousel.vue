@@ -16,6 +16,20 @@
 
         </div>
       </v-carousel-item>
+      <v-carousel-item>
+        <div class="relative">
+          <img class="sm:w-100 md:w-[70%] px-4 rounded-xl relative cursor-pointer md:h-[400px] mx-auto"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Riyadh_Skyline.jpg/1200px-Riyadh_Skyline.jpg" alt="Image" @click="navigateTo('/article')" />
+
+        </div>
+      </v-carousel-item>
+      <v-carousel-item>
+        <div class="relative">
+          <img class="sm:w-100 md:w-[70%] px-4 rounded-xl relative cursor-pointer md:h-[400px] mx-auto"
+            src="https://sona3masr.com/wp-content/uploads/2022/10/8aa37f29-7d84-41e8-b7ab-9160eeae85b5.jpg" alt="Image" @click="navigateTo('/article')" />
+
+        </div>
+      </v-carousel-item>
      
 
     
