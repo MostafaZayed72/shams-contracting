@@ -53,7 +53,7 @@
         </div>
       </div>
       <button
-        class="mt-4 bg-grey-darken-2 text-white px-4 py-2 rounded hover:bg-grey-darken-2 mx-auto text-center flex justify-center delayed"
+        class="mt-4 bg-second text-white px-4 py-2 rounded hover:bg-second mx-auto text-center flex justify-center delayed"
         @click="openEditDialog">
         {{ $t('Edit Data') }}
       </button>
@@ -101,7 +101,7 @@
           <button type="button" class="mx-2 bg-red-300 px-4 py-2 rounded hover:bg-red-400" @click="closeEditDialog">
             {{ $t('Cancel') }}
           </button>
-          <button type="submit" class="bg-grey-darken-2 text-white px-4 py-2 rounded hover:bg-grey-darken-2">
+          <button type="submit" class="bg-second text-white px-4 py-2 rounded hover:bg-second">
             {{ $t('Save') }}
           </button>
         </div>

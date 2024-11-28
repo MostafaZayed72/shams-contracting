@@ -91,16 +91,25 @@ onUnmounted(() => {
 
 
 <style>
-.v-btn--icon.v-btn--density-default {
-  background-color: rgb(3, 102, 56) !important;
-  height: 12px !important;
+
+.v-btn {
+        color: transparent !important;
+        border: 1px solid #1E3A8A !important;
+        background-color: transparent !important;
+        height: 12px !important;
   width: 12px !important;
-}
+    }
+.dark .v-btn {
+        border: 1px solid #fec433 !important;
+    }
 
-.v-btn--icon.v-btn--density-default {
-  color: rgb(251, 250, 252) !important;
-
-}
+    .v-btn--active {
+        
+        border: 1px solid #1E3A8A !important;
+        background-color: #fec433 !important;
+        height: 12px !important;
+  width: 12px !important;
+    }
 
 .mdi:before {
   display: none !important

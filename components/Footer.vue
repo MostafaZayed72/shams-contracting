@@ -1,10 +1,9 @@
 <template>
-    <footer class=" text-white bg-grey-darken-2" style="background-color: #0eba82;">
+    <footer class=" text-white bg-second bg-primary">
         <div class="container mx-auto flex flex-col-reverse gap-2 md:flex-row flex-wrap justify-between items-center">
             <!-- شعار الموقع -->
             <div class="flex items-center space-x-3">
-                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/c0b63289239975.5deed8161b1e5.jpg"
-                    alt="Site Logo" class="h-12 w-12 mx-2 rounded-full" />
+                <img src="/imgs/logo.png" alt="Site Logo" class="h-12 w-12 mx-2 rounded-full bg-white" />
                 <span class="text-sm md:text-xl">
                     &copy; {{ new Date().getFullYear() }} {{ $t('All rights reserved to Shams.') }}
                 </span>

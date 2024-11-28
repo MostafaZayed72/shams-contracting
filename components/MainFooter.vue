@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col justify-center items-center rounded-xl mx-4 " style="background-color: #0eba82;">
+    <div class="flex flex-col justify-center items-center rounded-xl mx-4 bg-primary" >
         <!-- first column -->
         <div class="flex">
 

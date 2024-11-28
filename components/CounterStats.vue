@@ -37,16 +37,16 @@ onMounted(() => {
 <template>
   <div class="flex justify-center items-center gap-8">
     <!-- دائرة الزوار -->
-    <div class="stat-item">
-      <div class="stat-content">
+    <div class="stat-item bg-second">
+      <div class="stat-content text-primary">
         <div class="text-xl font-bold">{{ visitorsCount }}</div>
         <div class="text-xl font-bold">{{ $t('Projects') }}</div>
       </div>
     </div>
 
     <!-- دائرة العملاء -->
-    <div class="stat-item">
-      <div class="stat-content">
+    <div class="stat-item bg-second">
+      <div class="stat-content text-primary">
         <div class="text-xl font-bold">{{ customersCount }}</div>
         <div class="text-xl font-bold">{{ $t('Customers') }}</div>
       </div>
@@ -60,7 +60,6 @@ onMounted(() => {
   position: relative;
   width: 130px;
   height: 130px;
-  background-image: url('/public/imgs/test.png'); /* ضع مسار الصورة هنا */
   background-size: cover;
   background-position: center;
   border-radius: 50%;

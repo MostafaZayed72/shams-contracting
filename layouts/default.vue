@@ -2,45 +2,44 @@
   <div :class="{ 'dark': isDarkMode }"
     :style="{ direction: locale === 'ar-AR' ? 'rtl' : 'ltr', backgroundImage: backgroundImage }">
 
-    <div class="mb-0 px-4  flex justify-between items-center py-2 shadow-xl sticky top-0 z-10 "
-      style="background-color: #0eba82;">
+    <div class="mb-0 px-4  flex justify-between items-center py-2 shadow-xl sticky top-0 z-10 bg-primary ">
       <div class="flex items-center gap-4">
         <Icon @click="toggleSidebar" name="iconamoon:menu-burger-horizontal"
           class="md:hidden text-xl text-white cursor-pointer" />
-        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/c0b63289239975.5deed8161b1e5.jpg"
-          class="w-12 h-12 cursor-pointer" alt="" style="border-radius: 50%;" @click="navigateTo('/')">
+        <img src="/imgs/logo.png" class="w-12 h-12 cursor-pointer bg-white" alt="" style="border-radius: 50%;"
+          @click="navigateTo('/')">
       </div>
 
       <!-- الروابط في الشاشات الكبيرة -->
       <div class="links md:flex items-center gap-4 hidden">
         <NuxtLink
-          class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-          to="/" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
+          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+          to="/" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
           {{ $t('Home') }}
         </NuxtLink>
 
         <NuxtLink v-if="token"
-          class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-          to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
+          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+          to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
           {{ $t('Maintenance') }}
         </NuxtLink>
         <!-- <NuxtLink
-          class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-          :to="`/yourNurse/${userID}`"  active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
+          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+          :to="`/yourNurse/${userID}`"  active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
           {{ $t('My profile') }}
         </NuxtLink> -->
         <NuxtLink
-          class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-          to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
+          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+          to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
           {{ $t('Environment') }}
         </NuxtLink>
-        <NuxtLink :class="['hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400',
-        ]" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400" to="">
+        <NuxtLink :class="['hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary',
+        ]" active-class="bg-second text-primary" exact-active-class="bg-second text-primary" to="">
           {{ $t('Safety') }}
         </NuxtLink>
         <NuxtLink
-          class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-          to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
+          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+          to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
           {{ $t('Orders') }}
         </NuxtLink>
 
@@ -62,13 +61,11 @@
 
     <!-- Burger Menu Transition for Small Screens -->
     <transition name="slide">
-      <div v-if="isSidebarOpen" class="md:hidden border-t-2 border-grey-darken-2 h-screen fixed z-10"
-        style="background-color: #0eba82;">
+      <div v-if="isSidebarOpen" class="md:hidden border-t-2 border-grey-darken-2 h-screen fixed z-10 bg-primary">
         <div class="flex flex-col p-4">
           <NuxtLink
-            class="flex items-center gap-2 hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-            to="/" active-class="bg-grey-darken-2 text-yellow-400"
-            exact-active-class="bg-grey-darken-2 text-yellow-400">
+            class="flex items-center gap-2 hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+            to="/" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
             <Icon name="material-symbols:family-home" />
 
             {{ $t('Home') }}
@@ -76,35 +73,35 @@
 
 
           <!-- <NuxtLink
-          class="hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-          :to="`/yourNurse/${userID}`"  active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
+          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+          :to="`/yourNurse/${userID}`"  active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
           {{ $t('My profile') }}
         </NuxtLink> -->
           <NuxtLink
-            class="flex items-center gap-2 hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-            to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
+            class="flex items-center gap-2 hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+            to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
             <Icon name="pajamas:issue-type-maintenance" />
             {{ $t('Maintenance') }}
           </NuxtLink>
-          <NuxtLink class="flex items-center gap-2" :class="['hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400',
-            { 'bg-grey-darken-2 text-yellow-400': isYourNurseActive }]" to="">
+          <NuxtLink class="flex items-center gap-2" :class="['hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary',
+            { 'bg-second text-primary': isYourNurseActive }]" to="">
             <Icon
               name="streamline:nature-ecology-pine-tree-plant-tree-farming-christmas-nature-plants-pine-environment" />
 
             {{ $t('Environment') }}
           </NuxtLink>
           <NuxtLink
-            class="flex items-center gap-2 hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-            to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
+            class="flex items-center gap-2 hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+            to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
             <Icon name="fluent-emoji-flat:safety-vest" />
 
             {{ $t('Safety') }}
 
           </NuxtLink>
           <NuxtLink
-            class="flex items-center gap-2 hover:bg-grey-darken-2 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
-            to="" active-class="bg-grey-darken-2 text-yellow-400" exact-active-class="bg-grey-darken-2 text-yellow-400">
-            
+            class="flex items-center gap-2 hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+            to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
+
             <Icon name="material-symbols:garden-cart" />
 
             {{ $t('Orders') }}
