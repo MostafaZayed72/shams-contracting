@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-screen overflow-hidden" @wheel="handleScroll">
+  <div class="relative h-screen overflow-hidden" @wheel="handleScroll" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
     <div class="transition-transform duration-700 ease-out"
       :style="{ transform: `translateY(-${currentIndex * 100}vh)` }">
       
@@ -71,6 +71,27 @@ const handleScroll = (event) => {
   }
 
   setTimeout(() => (isScrolling = false), 800);
+};
+
+// Navigate to slide from indicators
+
+let touchStartY = 0;
+
+const handleTouchStart = (event) => {
+  touchStartY = event.touches[0].clientY; // تسجيل نقطة البداية
+};
+
+const handleTouchEnd = (event) => {
+  const touchEndY = event.changedTouches[0].clientY; // تسجيل نقطة النهاية
+  const deltaY = touchStartY - touchEndY;
+
+  if (Math.abs(deltaY) > 50) { // الحد الأدنى للتمرير لتجنب التمريرات الصغيرة
+    if (deltaY > 0 && currentIndex.value < 4) {
+      currentIndex.value++; // التمرير لأعلى -> الشريحة التالية
+    } else if (deltaY < 0 && currentIndex.value > 0) {
+      currentIndex.value--; // التمرير لأسفل -> الشريحة السابقة
+    }
+  }
 };
 
 // Navigate to slide from indicators
