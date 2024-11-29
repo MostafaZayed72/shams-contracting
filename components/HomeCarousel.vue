@@ -1,125 +1,123 @@
 <template>
-  <div>
-    <v-carousel :height="carouselHeight" show-arrows="false" cycle hide-delimiter-background>
-      <v-carousel-item>
-        <div class="relative">
-          <img class="sm:w-100 md:w-[70%] px-4 rounded-xl relative cursor-pointer h-48 md:h-[400px] mx-auto"
-            src="https://www.economy-today.com/economy/uploads/2021/09/%D8%A8%D8%B1%D8%AC-%D8%A7%D9%84%D9%85%D9%85%D9%84%D9%83%D8%A9-750x430.jpg" alt="Image" @click="navigateTo('/article')" />
+  <div class="relative h-screen overflow-hidden" @wheel="handleScroll">
+    <div class="transition-transform duration-700 ease-out"
+      :style="{ transform: `translateY(-${currentIndex * 100}vh)` }">
+      
+      <!-- Slide 1 -->
+      <div class="relative h-screen w-screen overflow-hidden">
+        <video class="absolute top-0 left-0 w-full h-full object-cover" src="/imgs/videoplayback.mp4" autoplay loop
+          muted playsinline></video>
+      </div>
 
+      <!-- Slide 2 -->
+      <div 
+        class="flex flex-col items-center justify-center md:justify-between overflow-y-auto gap-8"
+        :class="{ 'slide-in-left': currentIndex === 1, 'slide-in-right': currentIndex === 2 }"
+        style="min-height: 100vh; background-image: url('/imgs/slide-tow.jpg'); background-size: cover">
+        <SlidesTowRight class="w-full md:w-[50%]" />
+        <SlidesTowLeft class="w-full md:w-[50%]" />
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="h-screen flex items-center justify-center overflow-y-auto "
+       style="min-height: 100vh; background-image: url('/imgs/slide-three.jpg'); background-size: cover"
+      :class="{ 'slide-in-left': currentIndex === 2, 'slide-in-right': currentIndex === 3 }">
+        <SlidesThreeCenter />
+      </div>
+
+      <!-- Slide 4 (محتوى طويل) -->
+      <div class="h-screen flex items-center justify-center bg-cover bg-center overflow-y-auto"
+      :class="{ 'slide-in-left': currentIndex === 3, 'slide-in-right': currentIndex === 4 }"
+        style="background-image: url('https://via.placeholder.com/1920x1080/333333');">
+        <div class="bg-white p-8 shadow-lg rounded">
+          <h2 class="text-3xl mb-4">Slide 4: قيد التطوير</h2>
+          
         </div>
-      </v-carousel-item>
-     
-      <v-carousel-item>
-        <div class="relative">
-          <img class="sm:w-100 md:w-[70%] px-4 rounded-xl relative cursor-pointer h-48 md:h-[400px] mx-auto"
-            src="https://argaamplus.s3.amazonaws.com/961f0e5d-670c-4b01-8f2a-a5c0134fca43.png" alt="Image" @click="navigateTo('/article')" />
+      </div>
 
-        </div>
-      </v-carousel-item>
-      <v-carousel-item>
-        <div class="relative">
-          <img class="sm:w-100 md:w-[70%] px-4 rounded-xl relative cursor-pointer h-48  md:h-[400px] mx-auto"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Riyadh_Skyline.jpg/1200px-Riyadh_Skyline.jpg" alt="Image" @click="navigateTo('/article')" />
+      <!-- Slide 5 -->
+      <div class="h-screen flex items-center justify-center bg-red-700"
+      :class="{ 'slide-in-left': currentIndex === 4, 'slide-in-right': currentIndex === 5 }">
+        <p class="text-4xl text-white">Slide 5: قيد التطوير</p>
+      </div>
+    </div>
 
-        </div>
-      </v-carousel-item>
-      <v-carousel-item>
-        <div class="relative">
-          <img class="sm:w-100 md:w-[70%] px-4 rounded-xl relative cursor-pointer h-48  md:h-[400px] mx-auto"
-            src="https://m.eyeofriyadh.com/news_images/2018/03/1b41e0e013581.jpg" alt="Image" @click="navigateTo('/article')" />
-
-        </div>
-      </v-carousel-item>
-     
-
-    
-
-    </v-carousel>
+    <!-- Indicators on the side -->
+    <div class="absolute mx-4 top-1/2 transform -translate-y-1/2 flex flex-col space-y-2">
+      <div v-for="(_, index) in 5" :key="index" @click="goToSlide(index)" :class="[ 
+        'h-4 w-4 rounded-full cursor-pointer transition-all duration-300', 
+        currentIndex === index ? 'bg-white border-2 border-second' : 'bg-gray-500' 
+      ]"></div>
+    </div>
   </div>
 </template>
 
-
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref } from 'vue';
 
-const carouselHeight = ref(250); // الطول الافتراضي للشاشات الصغيرة
-const products = ref([]); // لتخزين المنتجات
+const currentIndex = ref(0);
 
-// دالة لتحديث الارتفاع بناءً على حجم الشاشة
-const updateHeight = () => {
-  if (window.innerWidth >= 580) {
-    carouselHeight.value = 450; // الطول للشاشات الكبيرة جدًا
-  } else if (window.innerWidth >= 490) {
-    carouselHeight.value = 350; // الطول للشاشات الكبيرة
-  } else if (window.innerWidth >= 410) {
-    carouselHeight.value = 300; // الطول للشاشات المتوسطة
-  } else {
-    carouselHeight.value = 240; // الطول للشاشات الصغيرة
+// Handle mouse scroll
+let isScrolling = false;
+const handleScroll = (event) => {
+  if (isScrolling) return;
+
+  isScrolling = true;
+
+  if (event.deltaY > 0 && currentIndex.value < 4) {
+    currentIndex.value++;
+  } else if (event.deltaY < 0 && currentIndex.value > 0) {
+    currentIndex.value--;
   }
+
+  setTimeout(() => (isScrolling = false), 800);
 };
 
-// دالة لجلب المنتجات
-const fetchProducts = async () => {
-  try {
-    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/Products/GetAllProducts`);
-    const data = await response.json();
-    products.value = data.data.map(product => ({
-      id: product.id,
-      imageUrl: `${import.meta.env.VITE_API_BASE_URL}/${product.images?.[0]?.url}`, // استخدام أول صورة مع المسار الكامل
-    }));
-
-  } catch (error) {
-    console.error("Error fetching products:", error);
-  }
+// Navigate to slide from indicators
+const goToSlide = (index) => {
+  currentIndex.value = index;
 };
-
-onMounted(() => {
-  updateHeight(); // تعيين الارتفاع عند تحميل الصفحة
-  fetchProducts(); // جلب المنتجات عند تحميل الصفحة
-
-  // إضافة مستمع للحدث resize لتحديث الارتفاع عند تغيير حجم الشاشة
-  window.addEventListener('resize', updateHeight);
-});
-
-onUnmounted(() => {
-  // إزالة مستمع الحدث عند التخلص من المكون
-  window.removeEventListener('resize', updateHeight);
-});
 </script>
 
-
-
-
-<style>
-
-.v-btn {
-        color: transparent !important;
-        border: 1px solid #1E3A8A !important;
-        background-color: transparent !important;
-        height: 12px !important;
-  width: 12px !important;
-    }
-.dark .v-btn {
-        border: 1px solid #fec433 !important;
-    }
-
-    .v-btn--active {
-        
-        border: 1px solid #1E3A8A !important;
-        background-color: #fec433 !important;
-        height: 12px !important;
-  width: 12px !important;
-    }
-
-.mdi:before {
-  display: none !important
+<style scoped>
+div.h-screen {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
 }
 
-.v-window__right {
-  display: none !important
+.slide-in-left {
+  animation: slide-in-left 1s forwards;
 }
 
-.v-window__left {
-  display: none !important
+.slide-in-right {
+  animation: slide-in-right 1s forwards;
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+  max-height: 100vh;
 }
 </style>

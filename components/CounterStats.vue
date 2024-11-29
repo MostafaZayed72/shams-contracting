@@ -4,10 +4,12 @@ import { ref, onMounted } from 'vue';
 // القيم الأولية للعدادات
 const visitorsCount = ref(0);
 const customersCount = ref(0);
+const moneyCount = ref(0);
 
 // الأرقام النهائية التي نريد الوصول إليها
 const targetVisitors = 12345;
 const targetCustomers = 987;
+const targetMoney = 1000520;
 
 // مدة الأنيميشن (ثواني)
 const duration = 3;
@@ -31,24 +33,32 @@ const startCounter = (target, countRef) => {
 onMounted(() => {
   startCounter(targetVisitors, visitorsCount);
   startCounter(targetCustomers, customersCount);
+  startCounter(targetMoney, moneyCount);
 });
 </script>
 
 <template>
-  <div class="flex justify-center items-center gap-8">
+  <div class="flex flex-col md:flex-row justify-center items-center gap-8"  >
     <!-- دائرة الزوار -->
-    <div class="stat-item bg-second">
-      <div class="stat-content text-primary">
-        <div class="text-xl font-bold">{{ visitorsCount }}</div>
-        <div class="text-xl font-bold">{{ $t('Projects') }}</div>
+    <div class="stat-item border-2 border-gray-400 md:py-8   w-[70%]  md:w-fit md:px-4 text-center rounded">
+      <div class="stat-content text-white ">
+        <div class="md:text-2xl font-bold">+{{ visitorsCount }}</div>
+        <div class="text-gray-400">{{ $t('Completed Mega Projects') }}</div>
       </div>
     </div>
 
     <!-- دائرة العملاء -->
-    <div class="stat-item bg-second">
-      <div class="stat-content text-primary">
-        <div class="text-xl font-bold">{{ customersCount }}</div>
-        <div class="text-xl font-bold">{{ $t('Customers') }}</div>
+    <div class="stat-item border-2 border-gray-400 md:py-8   w-[70%]  md:w-fit md:px-10 text-center rounded">
+      <div class="stat-content text-white ">
+        <div class="md:text-2xl font-bold">+{{ customersCount }}</div>
+        <div class="text-gray-400">{{ $t('Years of Experience') }}</div>
+      </div>
+    </div>
+    <!-- دائرة العملاء -->
+    <div class="stat-item border-2 border-gray-400 md:py-8   w-[70%]  md:w-fit md:px-4 text-center rounded">
+      <div class="stat-content text-white ">
+        <div class="md:text-2xl font-bold">+{{ moneyCount }}</div>
+        <div class="text-gray-400">{{ $t('Billion SARActive Projects Value') }}</div>
       </div>
     </div>
   </div>
@@ -56,38 +66,5 @@ onMounted(() => {
 
 <style scoped>
 /* تصميم الدوائر */
-.stat-item {
-  position: relative;
-  width: 130px;
-  height: 130px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  
-}
 
-/* محتوى الدائرة */
-.stat-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* النص داخل الدائرة */
-.stat-value {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.stat-label {
-  font-size: 1rem;
-  font-weight: normal;
-}
 </style>

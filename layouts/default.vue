@@ -1,11 +1,11 @@
 <template>
   <div :class="{ 'dark': isDarkMode }"
-    :style="{ direction: locale === 'ar-AR' ? 'rtl' : 'ltr', backgroundImage: backgroundImage }">
+    :style="{ direction: locale === 'ar-AR' ? 'rtl' : 'ltr'}" class="relative" >
 
-    <div class="mb-0 px-4  flex justify-between items-center py-2 shadow-xl sticky top-0 z-10 bg-primary ">
+    <div class="mb-0 px-4   flex justify-between items-center py-2  absolute w-full top-0 z-10  bg-gray-400">
       <div class="flex items-center gap-4">
         <Icon @click="toggleSidebar" name="iconamoon:menu-burger-horizontal"
-          class="md:hidden text-xl text-white cursor-pointer" />
+          class="md:hidden text-xl text-primary cursor-pointer " />
         <img src="/imgs/logo.png" class="w-12 h-12 cursor-pointer bg-white" alt="" style="border-radius: 50%;"
           @click="navigateTo('/')">
       </div>
@@ -13,13 +13,13 @@
       <!-- الروابط في الشاشات الكبيرة -->
       <div class="links md:flex items-center gap-4 hidden">
         <NuxtLink
-          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold  hover:text-primary"
           to="/" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
           {{ $t('Home') }}
         </NuxtLink>
 
         <NuxtLink v-if="token"
-          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold  hover:text-primary"
           to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
           {{ $t('Maintenance') }}
         </NuxtLink>
@@ -29,16 +29,16 @@
           {{ $t('My profile') }}
         </NuxtLink> -->
         <NuxtLink
-          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold  hover:text-primary"
           to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
           {{ $t('Environment') }}
         </NuxtLink>
-        <NuxtLink :class="['hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary',
+        <NuxtLink :class="['hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold  hover:text-primary',
         ]" active-class="bg-second text-primary" exact-active-class="bg-second text-primary" to="">
           {{ $t('Safety') }}
         </NuxtLink>
         <NuxtLink
-          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold  hover:text-primary"
           to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
           {{ $t('Orders') }}
         </NuxtLink>
@@ -55,13 +55,19 @@
         <LanguageSwitcher />
 
         <DarkModeToggle @click="toggleDarkMode" />
-        <FloatingActions />
+        <!-- <FloatingActions /> -->
       </div>
     </div>
 
     <!-- Burger Menu Transition for Small Screens -->
     <transition name="slide">
-      <div v-if="isSidebarOpen" class="md:hidden border-t-2 border-grey-darken-2 h-screen fixed z-10 bg-primary">
+      
+      <div v-if="isSidebarOpen" class="md:hidden border-t-2 border-grey-darken-2 h-screen fixed  z-10 bg-primary">
+        <div class="flex items-center gap-4">
+        <Icon @click="toggleSidebar" name="iconamoon:menu-burger-horizontal"
+          class="md:hidden text-xl text-white cursor-pointer  mx-7 mt-4" />
+        
+      </div>
         <div class="flex flex-col p-4">
           <NuxtLink
             class="flex items-center gap-2 hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
