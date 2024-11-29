@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-screen overflow-hidden" @wheel="handleScroll" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
+  <div class="relative h-screen overflow-hidden" ref="slideContainer"  @wheel="handleTouchMove" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
     <div class="transition-transform duration-700 ease-out"
       :style="{ transform: `translateY(-${currentIndex * 100}vh)` }">
       
@@ -77,20 +77,23 @@ const handleScroll = (event) => {
 
 let touchStartY = 0;
 
-const handleTouchStart = (event) => {
-  touchStartY = event.touches[0].clientY; // تسجيل نقطة البداية
-};
+const slideContainer = ref(null);
 
-const handleTouchEnd = (event) => {
-  const touchEndY = event.changedTouches[0].clientY; // تسجيل نقطة النهاية
-  const deltaY = touchStartY - touchEndY;
+const handleTouchMove = (event) => {
+  const slide = slideContainer.value.children[currentIndex.value];
+  const isAtTop = slide.scrollTop === 0;
+  const isAtBottom = slide.scrollHeight - slide.scrollTop === slide.clientHeight;
 
-  if (Math.abs(deltaY) > 50) { // الحد الأدنى للتمرير لتجنب التمريرات الصغيرة
-    if (deltaY > 0 && currentIndex.value < 4) {
-      currentIndex.value++; // التمرير لأعلى -> الشريحة التالية
-    } else if (deltaY < 0 && currentIndex.value > 0) {
-      currentIndex.value--; // التمرير لأسفل -> الشريحة السابقة
-    }
+  // إذا كان التمرير داخل المحتوى، امنع الانتقال
+  if (!isAtTop && !isAtBottom) {
+    return;
+  }
+
+  // التنقل بين السلايدات فقط عند بداية أو نهاية السلايد
+  if (event.deltaY > 0 && isAtBottom && currentIndex.value < 4) {
+    currentIndex.value++;
+  } else if (event.deltaY < 0 && isAtTop && currentIndex.value > 0) {
+    currentIndex.value--;
   }
 };
 
