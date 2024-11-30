@@ -1,5 +1,7 @@
 <template>
-  <div class="relative h-screen overflow-hidden" @wheel="handleScroll" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
+  <div class="relative h-screen overflow-hidden" @wheel="handleScroll"
+  @touchstart="handleTouchStart"
+  @touchend="handleTouchEnd">
     <div class="transition-transform duration-700 ease-out"
       :style="{ transform: `translateY(-${currentIndex * 100}vh)` }">
       
@@ -73,24 +75,31 @@ const handleScroll = (event) => {
   setTimeout(() => (isScrolling = false), 800);
 };
 
-// Navigate to slide from indicators
 
-let touchStartY = 0;
+const touchStartY = ref(0);
+const touchEndY = ref(0);
 
 const handleTouchStart = (event) => {
-  touchStartY = event.touches[0].clientY; // تسجيل نقطة البداية
+  touchStartY.value = event.touches[0].clientY; // حفظ بداية السحب
 };
 
 const handleTouchEnd = (event) => {
-  const touchEndY = event.changedTouches[0].clientY; // تسجيل نقطة النهاية
-  const deltaY = touchStartY - touchEndY;
+  touchEndY.value = event.changedTouches[0].clientY; // حفظ نهاية السحب
+  handleVerticalSwipe(); // استدعاء الدالة للتحقق من الحركة
+};
 
-  if (Math.abs(deltaY) > 50) { // الحد الأدنى للتمرير لتجنب التمريرات الصغيرة
-    if (deltaY > 0 && currentIndex.value < 4) {
-      currentIndex.value++; // التمرير لأعلى -> الشريحة التالية
-    } else if (deltaY < 0 && currentIndex.value > 0) {
-      currentIndex.value--; // التمرير لأسفل -> الشريحة السابقة
-    }
+const handleVerticalSwipe = () => {
+  const swipeThreshold = 50; // الحد الأدنى للمسافة لتسجيل السحب
+
+  // التحقق إذا كان السحب عموديًا وكبيرًا بما يكفي
+  const swipeDistance = touchStartY.value - touchEndY.value;
+
+  if (swipeDistance > swipeThreshold && currentIndex.value < 4) {
+    // السحب لأعلى (التنقل إلى الشريحة التالية)
+    currentIndex.value++;
+  } else if (swipeDistance < -swipeThreshold && currentIndex.value > 0) {
+    // السحب لأسفل (التنقل إلى الشريحة السابقة)
+    currentIndex.value--;
   }
 };
 
