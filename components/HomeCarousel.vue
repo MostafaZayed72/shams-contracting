@@ -78,27 +78,36 @@ const handleScroll = (event) => {
 
 const touchStartY = ref(0);
 const touchEndY = ref(0);
+const isAtEdge = ref(false);
 
 const handleTouchStart = (event) => {
-  touchStartY.value = event.touches[0].clientY; // حفظ بداية السحب
+  touchStartY.value = event.touches[0].clientY;
+  checkIfAtEdge(event);
 };
 
 const handleTouchEnd = (event) => {
-  touchEndY.value = event.changedTouches[0].clientY; // حفظ نهاية السحب
-  handleVerticalSwipe(); // استدعاء الدالة للتحقق من الحركة
+  touchEndY.value = event.changedTouches[0].clientY;
+  handleVerticalSwipe(event);
 };
 
-const handleVerticalSwipe = () => {
-  const swipeThreshold = 50; // الحد الأدنى للمسافة لتسجيل السحب
+const checkIfAtEdge = (event) => {
+  const currentSlide = event.target.closest('.h-screen');
+  const atTop = currentSlide.scrollTop === 0;
+  const atBottom = currentSlide.scrollHeight - currentSlide.scrollTop === currentSlide.clientHeight;
+  isAtEdge.value = atTop || atBottom;
+};
 
-  // التحقق إذا كان السحب عموديًا وكبيرًا بما يكفي
+const handleVerticalSwipe = (event) => {
+  const swipeThreshold = 50;
   const swipeDistance = touchStartY.value - touchEndY.value;
 
+  if (!isAtEdge.value) return; // لا تتنقل إذا لم تكن عند الحافة
+
   if (swipeDistance > swipeThreshold && currentIndex.value < 4) {
-    // السحب لأعلى (التنقل إلى الشريحة التالية)
+    // السحب لأعلى عند الحافة السفلية
     currentIndex.value++;
   } else if (swipeDistance < -swipeThreshold && currentIndex.value > 0) {
-    // السحب لأسفل (التنقل إلى الشريحة السابقة)
+    // السحب لأسفل عند الحافة العلوية
     currentIndex.value--;
   }
 };
