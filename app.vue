@@ -74,7 +74,7 @@ body {
 
 /* تغيير لون خلفية الصفوف */
 .p-datatable .p-datatable-tbody>tr:nth-child(odd) {
-  background-color: #c8e6ca;
+  background-color: #95bcf7;
   /* لون خلفية الصفوف الفردية */
 }
 
@@ -109,7 +109,7 @@ body {
 
 /* تغيير لون خلفية رأس الجدول */
 .p-datatable .p-datatable-thead>tr>th {
-  background-color: #0eba82;
+  background-color: #1a428a;
   /* لون خلفية رأس الجدول */
   color: #ffffff;
   /* لون النص في رأس الجدول */
@@ -118,7 +118,7 @@ body {
 
 /* تغيير لون الحدود */
 .p-datatable .p-datatable-tbody>tr>td {
-  border-color: #0eba82;
+  border-color: #1a428a;
   /* لون حدود الخلايا */
 }
 
@@ -135,7 +135,7 @@ body {
 }
 
 .p-paginator {
-  background-color: #0eba82 !important;
+  background-color: #1a428a !important;
 }
 
 .p-paginator-prev {
@@ -166,7 +166,7 @@ body {
 }
 
 td {
-  border-right: 1px solid #0eba82 !important;
+  border-right: 1px solid #1a428a !important;
   /* إضافة خط عمودي */
 }
 
