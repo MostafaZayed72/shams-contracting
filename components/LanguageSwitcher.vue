@@ -3,11 +3,11 @@
 
       <div  v-if="locale === 'ar-AR'" class="flex gap-1 items-center cursor-pointer" @click="switchLanguage('en-US')">
        
-    <Icon class="text-2xl  text-primary" name="ic:round-language" />
+    <Icon class="text-2xl  sm:text-primary md:text-white" name="ic:round-language" />
       </div>
       <div v-if="locale === 'en-US'" class="flex gap-1 items-center cursor-pointer"   @click="switchLanguage('ar-AR')">
        
-    <Icon class=" text-2xl text-primary" name="ic:round-language" />
+    <Icon class=" text-2xl sm:text-primary md:text-white" name="ic:round-language" />
       </div>
      
    

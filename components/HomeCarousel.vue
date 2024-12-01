@@ -28,19 +28,17 @@
       </div>
 
       <!-- Slide 4 (محتوى طويل) -->
-      <div class="h-screen flex items-center justify-center bg-cover bg-center overflow-y-auto"
-      :class="{ 'slide-in-left': currentIndex === 3, 'slide-in-right': currentIndex === 4 }"
-        style="background-image: url('https://via.placeholder.com/1920x1080/333333');">
-        <div class="bg-white p-8 shadow-lg rounded">
-          <h2 class="text-3xl mb-4">Slide 4: قيد التطوير</h2>
-          
-        </div>
+      <div class="h-screen flex items-center justify-center overflow-y-auto "
+       style="min-height: 100vh; background-image: url('/imgs/slide-tow.jpg'); background-size: cover"
+      :class="{ 'slide-in-left': currentIndex === 3, 'slide-in-right': currentIndex === 4 }">
+        <SlidesFourCenter />
       </div>
-
       <!-- Slide 5 -->
-      <div class="h-screen flex items-center justify-center bg-red-700"
+      <div class="h-screen flex items-center justify-center overflow-y-auto w-full"
+       style="min-height: 100vh; background-image: url('/imgs/building.jpg'); background-size: cover"
       :class="{ 'slide-in-left': currentIndex === 4, 'slide-in-right': currentIndex === 5 }">
-        <p class="text-4xl text-white">Slide 5: قيد التطوير</p>
+      <h1 class="text-primary md:text-xl font-bold absolute bg-second px-4 py-2 rounded-xl text-center mx-4">موقع شمس للمقاولات هو منصة رائدة تهدف إلى تقديم حلول مبتكرة في مجال البناء والتشييد، مع التركيز على توفير خدمات عالية الجودة تلبّي احتياجات العملاء </h1>
+        <SlidesFiveCenter />
       </div>
     </div>
 

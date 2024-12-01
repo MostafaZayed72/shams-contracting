@@ -2,7 +2,7 @@
   <div :class="{ 'dark': isDarkMode }"
     :style="{ direction: locale === 'ar-AR' ? 'rtl' : 'ltr'}" class="relative" >
 
-    <div class="mb-0 px-4   flex justify-between items-center py-2  absolute w-full top-0 z-10  md:bg-gray-400">
+    <div class="mb-0 px-4   flex justify-between items-center py-2  absolute w-full top-0 z-10  md:bg-primary">
       <div class="flex items-center gap-4">
         <Icon @click="toggleSidebar" name="iconamoon:menu-burger-horizontal"
           class="md:hidden text-xl text-primary cursor-pointer " />
@@ -11,7 +11,7 @@
       </div>
 
       <!-- الروابط في الشاشات الكبيرة -->
-      <div class="links md:flex items-center gap-4 hidden">
+      <div class="links md:flex items-center gap-4 hidden text-white">
         <NuxtLink
           class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold  hover:text-primary"
           to="/" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
