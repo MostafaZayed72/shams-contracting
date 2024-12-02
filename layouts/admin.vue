@@ -11,11 +11,16 @@
 
       <!-- الروابط في الشاشات الكبيرة -->
       <div class="links md:flex items-center gap-4 hidden">
-        <!-- <NuxtLink
+        <NuxtLink
           class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
-          to="/admin/products" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
-          {{ $t('Products') }}
-        </NuxtLink> -->
+          to="/admin/departments" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
+          {{ $t('Departments') }}
+        </NuxtLink>
+        <NuxtLink
+          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+          to="/admin/divisions" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
+          {{ $t('Divisions') }}
+        </NuxtLink>
 
 
 
@@ -38,10 +43,15 @@
         <div class="flex flex-col p-4">
           <NuxtLink
             class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
-            to="/admin/products" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
-            {{ $t('Products') }}
+            to="/admin/departments" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
+            {{ $t('Departments') }}
           </NuxtLink>
 
+          <NuxtLink
+          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
+          to="/admin/divisions" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
+          {{ $t('Divisions') }}
+        </NuxtLink>
 
 
           <h1 v-if="token" @click="logout"
