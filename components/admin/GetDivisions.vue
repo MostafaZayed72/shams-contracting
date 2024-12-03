@@ -98,4 +98,9 @@ onMounted(async () => {
   await getDepartments()  // جلب بيانات الأقسام أولًا
   await getDivisions()    // جلب بيانات الفروع بعد الأقسام
 })
+import { EventBus } from '@/eventBus';
+onMounted(() => {
+  EventBus.on('refreshDivisions', getDivisions);
+});
+
 </script>

@@ -2,10 +2,10 @@
   <div :class="{ 'dark': isDarkMode }"
     :style="{ direction: locale === 'ar-AR' ? 'rtl' : 'ltr'}" class="relative" >
 
-    <div class="mb-0 px-4   flex justify-between items-center py-2  absolute w-full top-0 z-10  md:bg-primary">
+    <div class="mb-0 px-4   flex justify-between items-center py-2  sticky w-full top-0 z-10  bg-primary">
       <div class="flex items-center gap-4">
         <Icon @click="toggleSidebar" name="iconamoon:menu-burger-horizontal"
-          class="md:hidden text-xl text-primary cursor-pointer " />
+          class="md:hidden text-xl text-white cursor-pointer " />
         <img src="/imgs/logo.png" class="w-12 h-12 cursor-pointer bg-white" alt="" style="border-radius: 50%;"
           @click="navigateTo('/')">
       </div>
@@ -18,28 +18,18 @@
           {{ $t('Home') }}
         </NuxtLink>
 
-        <NuxtLink v-if="token"
-          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold  hover:text-primary"
-          to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
-          {{ $t('Maintenance') }}
-        </NuxtLink>
-        <!-- <NuxtLink
-          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
-          :to="`/yourNurse/${userID}`"  active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
-          {{ $t('My profile') }}
-        </NuxtLink> -->
+       
         <NuxtLink
           class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold  hover:text-primary"
-          to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
-          {{ $t('Environment') }}
+          to="/departments" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
+          {{ $t('Departments') }}
         </NuxtLink>
-        <NuxtLink :class="['hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold  hover:text-primary',
-        ]" active-class="bg-second text-primary" exact-active-class="bg-second text-primary" to="">
-          {{ $t('Safety') }}
-        </NuxtLink>
+
+
+
         <NuxtLink
           class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold  hover:text-primary"
-          to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
+          to="/orders" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
           {{ $t('Orders') }}
         </NuxtLink>
 
@@ -78,35 +68,19 @@
           </NuxtLink>
 
 
-          <!-- <NuxtLink
-          class="hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
-          :to="`/yourNurse/${userID}`"  active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
-          {{ $t('My profile') }}
-        </NuxtLink> -->
+   
           <NuxtLink
             class="flex items-center gap-2 hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
-            to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
-            <Icon name="pajamas:issue-type-maintenance" />
-            {{ $t('Maintenance') }}
-          </NuxtLink>
-          <NuxtLink class="flex items-center gap-2" :class="['hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary',
-            { 'bg-second text-primary': isYourNurseActive }]" to="">
-            <Icon
-              name="streamline:nature-ecology-pine-tree-plant-tree-farming-christmas-nature-plants-pine-environment" />
+            to="/departments" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
 
-            {{ $t('Environment') }}
-          </NuxtLink>
-          <NuxtLink
-            class="flex items-center gap-2 hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
-            to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
-            <Icon name="fluent-emoji-flat:safety-vest" />
+            <Icon name="fluent:branch-fork-32-filled" />
 
-            {{ $t('Safety') }}
+            {{ $t('Departments') }}
 
           </NuxtLink>
           <NuxtLink
             class="flex items-center gap-2 hover:bg-second px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-primary"
-            to="" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
+            to="/orders" active-class="bg-second text-primary" exact-active-class="bg-second text-primary">
 
             <Icon name="material-symbols:garden-cart" />
 
@@ -123,7 +97,7 @@
     </transition>
 
     <Loader v-if="loading" />
-    <main class="p-0">
+    <main class="p-0 ">
       <slot />
 
     </main>

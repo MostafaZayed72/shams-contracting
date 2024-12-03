@@ -92,7 +92,17 @@ const updateDepartment = async () => {
     console.log('تم تعديل القسم بنجاح', response.data);
     router.push('/admin/departments'); // التوجيه إلى صفحة الأقسام
   } catch (error) {
-    console.error('خطأ أثناء تعديل القسم', error);
+    // التحقق مما إذا كان الخطأ يحتوي على استجابة من الخادم
+    if (error.response && error.response.data && error.response.data.errors) {
+      const errors = error.response.data.errors;
+      // استخراج أول رسالة خطأ من كائن الأخطاء
+      const errorMessages = Object.values(errors).flat(); // جمع جميع الرسائل
+      alert(errorMessages[0]); // عرض أول رسالة خطأ فقط
+    } else {
+      // في حالة عدم وجود استجابة أو هيكل خطأ مختلف
+      console.error('خطأ أثناء تعديل القسم', error);
+      alert('حدث خطأ غير متوقع');
+    }
   } finally {
     loader.value = false;
   }

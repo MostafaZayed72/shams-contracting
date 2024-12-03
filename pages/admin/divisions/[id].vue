@@ -47,7 +47,7 @@
       </div>
 
       <!-- الأزرار -->
-      <div class="field flex justify-between">
+      <div class="field flex justify-between mt-6">
         <Button label="تعديل" icon="pi pi-check" type="submit" class="w-1/3" />
         <Button label="حذف" icon="pi pi-trash" @click="deleteDivision" class="w-1/3 p-button-danger" />
       </div>
@@ -111,7 +111,17 @@ const updateDivision = async () => {
     await axios.put(`${baseUrl}/api/Divisions/UpdateDivision`, division.value);
     router.push('/admin/divisions'); // العودة لقائمة الفروع
   } catch (error) {
-    console.error('خطأ أثناء تعديل الفرع', error);
+    // التحقق مما إذا كان الخطأ يحتوي على استجابة من الخادم
+    if (error.response && error.response.data && error.response.data.errors) {
+      const errors = error.response.data.errors;
+      // استخراج أول رسالة خطأ من كائن الأخطاء
+      const errorMessages = Object.values(errors).flat(); // جمع جميع الرسائل
+      alert(errorMessages[0]); // عرض أول رسالة خطأ فقط
+    } else {
+      // في حالة عدم وجود استجابة أو هيكل خطأ مختلف
+      console.error('خطأ أثناء تعديل الفرع', error);
+      alert('حدث خطأ غير متوقع');
+    }
   } finally {
     loader.value = false;
   }
