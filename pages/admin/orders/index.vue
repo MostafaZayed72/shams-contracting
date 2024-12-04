@@ -82,7 +82,7 @@ const getStatusText = (status) => {
 
 // دالة التعديل - توجيه المستخدم إلى صفحة تعديل الطلب
 const editOrder = (id) => {
-  router.push(`/orders/${id}`);
+  router.push(`/admin/orders/${id}`);
 };
 
 onMounted(() => {
